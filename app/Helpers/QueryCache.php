@@ -59,11 +59,6 @@ class QueryCache
         return $result;
     }    
 
-        /**
-     * LOAD MORE 10/10 – ĐÃ FIX has_more CHÍNH XÁC CHO SITE ÍT BÀI (chỉ 1 bài)
-     * - Nếu trả về ít hơn 3 bài → chắc chắn hết bài (has_more = false)
-     * - Không cache html rỗng lâu dài
-     */
     public static function getLoadMoreChunk(int $offset, int $posts_per_page = 3): array
     {
         $start = microtime(true);
