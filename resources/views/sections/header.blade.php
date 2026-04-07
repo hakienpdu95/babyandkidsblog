@@ -1,8 +1,8 @@
-<header class="header-wrap bg-transparent relative z-8 min-h-[60px] w-full m-0">
+<header class="site-header header-wrap bg-transparent relative z-8 min-h-[60px] w-full m-0">
 	<div class="header-wrap-inner border-b-1 border-b-[#ebebeb]">
 		<div class="py-3 hidden xl:block header-top">
 			<div class="wraper mx-auto">
-				<nav class="bg-transparent flex justify-between items-center">
+				<div class="bg-transparent flex justify-between items-center">
 					<div class="flex justify-start items-center overflow-hidden header-logo">
 						<a title="Logo" href="{{ home_url('/') }}">
 						    <img id="logo-img" alt="Logo" src="{{ asset('images/logo.png') }}" loading="lazy" class="img-fluid">
@@ -26,40 +26,14 @@
 						</div>					
 					</div>
 
-					@include('partials.search-form')
-
 					<div class="flex items-center flex-row">
-						<div class="info-box-wrapper flex grow items-center pl-[10px] pr-[10px]">
-							<a class="!no-underline flex flex-row items-stretch px-[10px]" href="#" target="_blank" title="RSS">
-								<div class="header-icon relative flex flex-none items-center justify-center leading-[0]">
-									<div class="info-box-icon text-[#00438A] text-[30px]">
-										<i class="hgi hgi-stroke hgi-rss text-2xl"></i>
-									</div>
-								</div>
-							</a>
-
-							<a class="!no-underline flex flex-row items-stretch px-[10px]" href="#" target="_blank" title="Facebook">
-								<div class="header-icon relative flex flex-none items-center justify-center leading-[0]">
-									<div class="info-box-icon text-[#00438A] text-[30px]">
-										<i class="hgi hgi-stroke hgi-facebook-01 text-2xl"></i>
-									</div>
-								</div>
-							</a>
-
-							<a class="!no-underline flex flex-row items-stretch px-[10px]" href="#" target="_blank" title="Youtube">
-								<div class="header-icon relative flex flex-none items-center justify-center leading-[0]">
-									<div class="info-box-icon text-[#00438A] text-[30px]">
-										<i class="hgi hgi-stroke hgi-youtube text-2xl"></i>
-									</div>
-								</div>
-							</a>
-
-							<div class="item type-button flex flex-row items-stretch px-[10px]">
-								<a href="#" target="_blank" class="bg-[#00438A] border border-[#00438A] !no-underline !text-white text-sm font-normal inline-block text-center px-3 py-1.5 min-w-[90px] rounded-[50px] cursor-pointer transition duration-150 ease-in-out leading-normal">Đăng ký</a>
-							</div>
-						</div>
+						@if (has_nav_menu('primary_navigation'))
+						<nav class="nav-menu">
+							{!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav', 'echo' => false]) !!}
+						</nav>
+						@endif
 					</div>
-				</nav>
+				</div>
 			</div>
 		</div>
 	</div>
