@@ -10,15 +10,21 @@ class LoadMore {
     public static function handle() {
         check_ajax_referer('load_more_nonce', 'nonce');
 
-        // Tắt hoàn toàn output buffering (fix minifier)
         while (ob_get_level() > 0) {
             ob_end_clean();
         }
 
-        $offset = max(6, (int) ($_POST['offset'] ?? 6));
+        header('Content-Type: text/html; charset=utf-8');
+        header('Cache-Control: no-cache, no-store, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+
+        $offset = max(3, (int) ($_POST['offset'] ?? 3));
 
         $chunk = \App\Helpers\QueryCache::getLoadMoreChunk($offset, 3);
 
-        wp_send_json_success($chunk);
+        header('X-Has-More: ' . ($chunk['has_more'] ? '1' : '0'));
+        echo $chunk['html'] ?? '';
+        exit;
     }
 }

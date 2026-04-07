@@ -1,7 +1,7 @@
 <header class="header-wrap bg-transparent relative z-8 min-h-[60px] w-full m-0">
 	<div class="header-wrap-inner border-b-1 border-b-[#ebebeb]">
 		<div class="py-3 hidden xl:block header-top">
-			<div class="container mx-auto">
+			<div class="wraper mx-auto">
 				<nav class="bg-transparent flex justify-between items-center">
 					<div class="flex justify-start items-center overflow-hidden header-logo">
 						<a title="Logo" href="{{ home_url('/') }}">
@@ -10,9 +10,9 @@
 						<div class="flex flex-col" style="margin-top:-3px">
 						    <a class="logo" href="{{ home_url('/') }}">
 						        <strong class="brand-name relative">
-						            <span class="br-1">Vì</span>
-						            <span class="br-2">Gia đình</span>
-						            <span class="br-3 absolute">.com.vn</span>
+						            <span class="br-1">BabyAndKids</span>
+						            <span class="br-2">Blog</span>
+						            <span class="br-3 absolute">.com</span>
 						        </strong>
 						    </a>
 						    <div href="{{ home_url('/') }}" class="logo hidden">
@@ -20,8 +20,8 @@
 						            <span class="br-">Trang thông tin điện tử tổng hợp</span>
 						        </strong>
 						    </div>
-						    <div href="{{ home_url('/') }}" class="logo slg-actd absolute" style="bottom: 10px">
-						        <span class="slogan-actd">quảng bá nông sản, văn hóa, du lịch...</span>
+						    <div href="{{ home_url('/') }}" class="logo slg-actd absolute" style="bottom: 8px">
+						        <span class="slogan-actd">The best kids activities...</span>
 						    </div>
 						</div>					
 					</div>

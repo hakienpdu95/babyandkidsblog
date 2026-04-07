@@ -25,8 +25,8 @@
 }
 
 .header-logo {
-    padding-left: 15px;
-    font-family: 'EB Garamond';
+    /*padding-left: 15px;*/
+    font-family: 'urbane-rounded';
 
     a {
         text-decoration: unset !important;
@@ -38,9 +38,9 @@
     }
 
     .brand-name {
-        font-size: 23px;
+        font-size: 20px;
         padding-top: 20px;
-        font-weight: bold;
+        font-weight: 600;
 
         .br-1 {
             color: #003366;
@@ -76,11 +76,12 @@
         bottom: 0;
 
         > span.slogan-actd {
+            font-family: 'Outfit';
             font-size: 16px;
             float: left;
             text-transform: none;
             font-style: italic;
-            font-weight: normal;
+            font-weight: 300;
             color: red;
         }
     }

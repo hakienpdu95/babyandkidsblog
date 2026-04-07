@@ -61,12 +61,14 @@ class QueryCache
 
     public static function getLoadMoreChunk(int $offset, int $posts_per_page = 3): array
     {
-        $start = microtime(true);
+        $total_start = microtime(true);
 
-        // === QUERY CHÍNH (5 CPT) ===
-        $posts = get_posts([
-            'post_type'              => ['post', 'event', 'viet-heritage', 'viet-product', 'viet-travel'],
-            'posts_per_page'         => $posts_per_page,
+        $post_types = ['post', 'event', 'viet-heritage', 'viet-product', 'viet-travel'];
+
+        $query_start = microtime(true);
+        $query = new \WP_Query([
+            'post_type'              => $post_types,
+            'posts_per_page'         => $posts_per_page + 1,  
             'offset'                 => $offset,
             'orderby'                => 'date',
             'order'                  => 'DESC',
@@ -77,8 +79,37 @@ class QueryCache
             'update_post_term_cache' => false,
             'suppress_filters'       => false,
             'ignore_sticky_posts'    => true,
+            'lazy_load_term_meta'    => false,
         ]);
 
+        $all_posts = $query->posts;
+        $has_more  = count($all_posts) > $posts_per_page;
+
+        // Chỉ render đúng 3 bài (bỏ bài thừa nếu có)
+        $posts = $has_more ? array_slice($all_posts, 0, $posts_per_page) : $all_posts;
+        $query_time = round((microtime(true) - $query_start) * 1000, 2);
+
+        // === 2. PREFETCH (giữ nguyên) ===
+        $prefetch_start = microtime(true);
+        if (!empty($posts)) {
+            $ids = wp_list_pluck($posts, 'ID');
+            update_postmeta_cache($ids);
+            _prime_post_caches($ids, false, true);
+            sage_prefetch_link_posts($posts);
+
+            foreach ($ids as $id) {
+                get_post_meta($id, '_thumbnail_id', true);
+                \App\Placeholders\PlaceholderHandler::getUrl($id);
+                cmeta('custom_author', $id);
+                cmeta('flags', $id);
+                cmeta('is_redirect', $id);
+                cmeta('redirect_url', $id);
+            }
+        }
+        $prefetch_time = round((microtime(true) - $prefetch_start) * 1000, 2);
+
+        // === 3. RENDER BLADE ===
+        $render_start = microtime(true);
         $html = '';
         if (!empty($posts)) {
             global $post;
@@ -89,28 +120,12 @@ class QueryCache
             }
             wp_reset_postdata();
         }
+        $render_time = round((microtime(true) - $render_start) * 1000, 2);
 
-        $count = count($posts);
-
-        // === LOGIC ẨN BUTTON TRIỆT ĐỂ ===
-        $has_more = false;
-        if ($count === $posts_per_page) {
-            // Chỉ khi đầy 3 bài mới kiểm tra thêm (rất nhẹ, fields=ids)
-            $next_check = get_posts([
-                'post_type'      => ['post', 'event', 'viet-heritage', 'viet-product', 'viet-travel'],
-                'posts_per_page' => 1,
-                'offset'         => $offset + $posts_per_page,
-                'fields'         => 'ids',
-                'no_found_rows'  => true,
-                'cache_results'  => false,
-            ]);
-            $has_more = !empty($next_check);
-        }
-
-        $time = round((microtime(true) - $start) * 1000, 2);
+        $total_time = round((microtime(true) - $total_start) * 1000, 2);
 
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log("[LOADMORE FINAL] offset={$offset} | Found {$count} posts | has_more=" . ($has_more ? 'true' : 'false') . " | {$time}ms");
+            error_log("[LOADMORE FINAL 10/10] offset={$offset} | Rendered " . count($posts) . " posts | has_more=" . ($has_more ? 'true' : 'false') . " | Tổng {$total_time}ms");
         }
 
         return [
