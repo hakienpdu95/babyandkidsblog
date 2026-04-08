@@ -24,28 +24,19 @@
     </div>
 </section>
 
-<section class="py-[60px] pb-[50px] sm:py-[40px]">
+<section class="py-[60px] pb-[50px] sm:py-[40px] hidden">
     <div class="wraper">
         <div class="mb-8 col:mb-6">
             <h2 class="text-3xl font-bold text-[#444444] relative capitalize pb-5 col:text-2xl
                              before:absolute before:left-0 before:bottom-0 before:w-[100px] before:h-[5px] before:rounded-[6px]
                              before:bg-[#3756f7]
                               after:absolute after:left-[110px] after:bottom-0 after:w-7 after:h-[5px] after:rounded-[6px]
-                              after:bg-[#3756f7] ">sponsored news</h2>
+                              after:bg-[#3756f7] ">explore by popular categories</h2>
         </div>
 
         <div class="relative">
             <div class="bkb-breacking-wrap">
-                <div class="flex items-center p-5 border-x-[#e9edff] m-[-1px]">
-                    <div class="basis-[30%] rounded-[6px]">
-                        <img src="https://www.madetobeamomma.com/wp-content/uploads/2025/10/Bible.png" alt="" class="rounded-[6px]">
-                    </div>
-                    <div class="basis-[70%] pl-[15px]">
-                        <h3 class="text-[18px] font-semibold mt-[5px] ">
-                            <a href="blog-single.html" class="text-[#444444] transition-all hover:text-[#3756f7]">Healthy rutine for your healthy lifestyle.</a>
-                        </h3>
-                    </div>
-                </div>
+                @include('partials.blocks.category-play')
             </div>
         </div>
     </div>

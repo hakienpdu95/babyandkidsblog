@@ -15,11 +15,6 @@
 						            <span class="br-3 absolute">.com</span>
 						        </strong>
 						    </a>
-						    <div href="{{ home_url('/') }}" class="logo hidden">
-						        <strong class="brand-name p-0">
-						            <span class="br-">Trang thông tin điện tử tổng hợp</span>
-						        </strong>
-						    </div>
 						    <div href="{{ home_url('/') }}" class="logo slg-actd absolute" style="bottom: 8px">
 						        <span class="slogan-actd">The best kids activities...</span>
 						    </div>

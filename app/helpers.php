@@ -415,6 +415,12 @@ if (!function_exists('sage_social_icons')) {
         }
     }
 
+    if (!function_exists('sage_convert_to_kebab')) {
+        function sage_convert_to_kebab($string) {
+            return str_replace('_', '-', strtolower($string));
+        }
+    }
+
     /**
      * RENDER 1 CỘT FOOTER MENU – Tự động lấy tên menu làm tiêu đề
      * ĐÃ FIX: wp_get_nav_menu_locations() → get_nav_menu_locations()
@@ -433,7 +439,7 @@ if (!function_exists('sage_social_icons')) {
             $menu = wp_get_nav_menu_object($menu_id);
             $title = $menu ? $menu->name : $fallback_title;
 
-            $output = '<div class="col-span-12 sm:col-span-2">';
+            $output = '<div class="'.sage_convert_to_kebab($location).' col-span-4">';
 
             // Tiêu đề cột
             if ($title) {
