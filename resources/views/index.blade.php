@@ -1,28 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="py-[60px] pb-[50px] sm:py-[40px]">
-    <div class="wraper">
-        <div class="relative">
-            <div class="grid grid-cols-12 gap-x-4">
-                <div class="col-span-3 xl:col-span-3 lg:col-span-6 md:col-span-6 col:col-span-12">
-                    <article class="group story story--secondary ">
-                        <figure class="story__thumb">
-                            <a href="https://treemvietnam.net.vn/nu-cong-nhan-moi-truong-quen-minh-cuu-hai-hoc-sinh-giua-con-loc-du-d8171.html" class="img-fluid" title="Nữ công nhân môi trường quên mình cứu hai học sinh giữa cơn lốc dữ">
-                                <img class="" src="https://t.cmx-cdn.com/treemvietnam.net.vn/files/kimlinh/2026/04/05/cuu-nguoi-2-162335.webp" width="300" height="169" alt="Nữ công nhân môi trường quên mình cứu hai học sinh giữa cơn lốc dữ">
-                            </a>
-                        </figure>
-                        <div class="story__header">
-                            <h3 class="story__title">
-                                <a href="https://treemvietnam.net.vn/nu-cong-nhan-moi-truong-quen-minh-cuu-hai-hoc-sinh-giua-con-loc-du-d8171.html" class="" title="">Watercolor Tulips Flower Craft for Kids</a>
-                            </h3>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@include('partials.blocks.block-post-listing')
 
 <section class="py-[60px] pb-[50px] sm:py-[40px] hidden">
     <div class="wraper">

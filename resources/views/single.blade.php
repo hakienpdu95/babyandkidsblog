@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.entry-header')
+    <div class="wraper">
+        @include('partials.entry-header')
 
-    @if (has_post_thumbnail())
-        <div class="overflow-hidden shadow-xl mb-8">
-            {!! get_the_post_thumbnail(null, 'large', ['class' => 'w-full']) !!}
-        </div>
-    @endif
+        @if (has_post_thumbnail())
+            <div class="overflow-hidden shadow-xl mb-8">
+                {!! get_the_post_thumbnail(null, 'large', ['class' => 'w-full']) !!}
+            </div>
+        @endif
 
-    @include('partials.content-single')
+        @include('partials.content-single')        
+    </div>
 @endsection
 
 @section('sidebar')

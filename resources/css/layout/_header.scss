@@ -96,6 +96,20 @@
     }
 }
 
+.header-mobile {
+    #logo-img {
+      width: 60px;
+    }
+
+    a.logo-link {
+      margin-right: 2px;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+}
 
 @-webkit-keyframes stuckMoveDown {
     0% {
