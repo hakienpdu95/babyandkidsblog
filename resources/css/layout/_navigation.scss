@@ -91,113 +91,129 @@
 	}
 }
 
-.nav-menu > * {
-    line-height: 0;
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;        /* căn phải hoặc flex-start tùy header */
 }
+
 .nav-menu ul {
-    clear: both;
-    line-height: 1;
+    cursor: default;
+    list-style: none;
     margin: 0;
     padding: 0;
-    width: 100%;
 }
+
 .nav-menu .menu-item {
-    list-style: none;
     position: relative;
+    display: inline-block;
+    margin: 0;
 }
+
 .nav-menu .menu-item a {
-    border: none;
-    display: block;
-    font-size: 0.875rem;
-    position: relative;
-    padding: 16px;
-    text-decoration: none;
+    display: inline-block;
+    padding: 15px 13px 15px;
+    color: #114b7c;
     font-weight: 700;
-    text-decoration: none;
-}
-.nav-menu .menu-item.menu-item-has-children > a {
-    padding-right: calc(16px + 18px);
-}
-.nav-menu .menu-item:hover > a {
-    
-}
-.nav-menu .menu-item.menu-item-favorite a {
-    padding: 0;
-    display: flex;
+    font-size: 0.875rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .2s ease;
+    position: relative;
+    z-index: 2;
 }
 
-@media (min-width: 1095px) {
-    .nav-menu .menu > .menu-item > a {
-        font-size: var(--wp--preset--font-size--tiny);
-        padding: var(--wp--custom--layout--padding)
-            var(--wp--custom--layout--padding)
-            var(--wp--custom--layout--padding) 0;
-    }
-    .nav-menu .menu > .menu-item.menu-item-has-children > a {
-        padding-right: calc(var(--wp--custom--layout--padding) + 14px);
-    }
-    .nav-menu .menu-item {
-        float: left;
-    }
-    .nav-menu .menu-item:hover > .sub-menu,
-    .nav-menu .menu-item:focus-within > .sub-menu {
-        left: auto;
-        opacity: 1;
-    }
-    .nav-menu
-        .menu-item.menu-item-has-children:focus-within
-        > .submenu-expand
-        .close,
-    .nav-menu .menu-item.menu-item-has-children:hover > .submenu-expand .close {
-        display: inline;
-    }
-    .nav-menu
-        .menu-item.menu-item-has-children:focus-within
-        > .submenu-expand
-        .open,
-    .nav-menu .menu-item.menu-item-has-children:hover > .submenu-expand .open {
-        display: none;
-    }
-    .nav-menu .menu-item:not(.menu-item-has-children) > a:focus,
-    .nav-menu .menu-item:not(.menu-item-has-children) > a:hover {
-        text-decoration: underline;
-    }
-    .nav-menu .sub-menu {
-        background: var(--wp--preset--color--backdrop);
-        left: -9999px;
-        opacity: 0;
-        position: absolute;
-        width: 215px;
-        z-index: 99;
-    }
-    .nav-menu .sub-menu .menu-item {
-        float: none;
-    }
-    .nav-menu .sub-menu .sub-menu {
-        margin: -48px 0 0 215px;
-    }
+.nav-menu .menu-item a:hover {
+    color: #000;
 }
-@media (max-width: 1094px) {
-    .nav-menu {
-        display: none;
-        background-color: var(--wp--preset--color--backdrop);
-    }
-    .nav-menu.active {
-        display: block;
-    }
-    .nav-menu .menu-item-search,
-    .nav-menu .menu-item-favorite {
-        display: none;
-    }
 
-    .nav-menu .submenu-expand.expanded {
-        transform: rotate(180deg);
-    }
-    .nav-menu .submenu-expand.expanded + .sub-menu {
-        display: block;
-    }
-    .nav-menu .sub-menu {
-        display: none;
-        padding-left: 16px;
-    }
+/* ================= ARROW MENU CHA (CẤP 1) ================= */
+.nav-menu .menu-item-has-children > a::after {
+    float: right;
+    content: "\f078";                    /* chevron-down - Font Awesome 6 Pro */
+    font-family: "Font Awesome 6 Pro";
+    font-weight: 900;
+    margin-left: 6px;
+    font-size: 0.75em;
+    vertical-align: middle;
+    transition: transform 0.3s cubic-bezier(0.2, 0.06, 0.05, 0.95);
+}
+
+.nav-menu .menu-item-has-children:hover > a::after {
+    transform: rotate(180deg);
+}
+
+/* ================= SUBMENU CẤP 1 & CẤP 2 ================= */
+.nav-menu .menu-item > .sub-menu {
+    background-color: #fff;
+    min-width: 240px;
+    padding: 12px 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 1000;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.06, 0.05, 0.95);
+}
+
+.nav-menu .menu-item > .sub-menu * {
+    width: 100%;
+    font-weight: 400;
+}
+
+.nav-menu .menu-item > .sub-menu a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    color: #565656;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+/* Hover & Focus */
+.nav-menu .menu-item.menu-item-has-children:hover > .sub-menu,
+.nav-menu .menu-item.menu-item-has-children:focus-within > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Hover item con */
+.nav-menu .sub-menu a:hover,
+.nav-menu .sub-menu a:focus {
+    background-color: #f8f9fa;
+    color: #114b7c;
+    padding-left: 25px;
+}
+
+/* ================= SUBMENU CẤP 3 (SUB-SUBMENU) ================= */
+.nav-menu .sub-menu .menu-item > .sub-menu {
+    top: 0;                           /* căn trên bằng item cha */
+    left: 100%;                       /* hiện sang bên phải */
+    transform: translateX(10px);
+    min-width: 240px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Arrow cho item cấp 2 (có submenu cấp 3) */
+.nav-menu .sub-menu .menu-item-has-children > a::after {
+    content: "\f054";                 /* chevron-right - Font Awesome 6 Pro */
+    font-family: "Font Awesome 6 Pro";
+    font-weight: 900;
+    margin-left: 8px;
+    font-size: 0.8em;
+    vertical-align: middle;
+}
+
+/* Khi hover submenu cấp 3 */
+.nav-menu .sub-menu .menu-item.menu-item-has-children:hover > .sub-menu {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }

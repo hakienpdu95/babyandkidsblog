@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         @php(do_action('get_header')) 
         @php(wp_head()) 
-        @vite([ 'resources/css/hgi-stroke-rounded.css', 'resources/css/app.css', 'resources/css/main.scss', 'resources/js/jquery.js', 'resources/js/app.js' ])
+        @vite([ 'resources/css/icon.min.css', 'resources/css/app.css', 'resources/css/main.scss', 'resources/js/jquery.js', 'resources/js/app.js' ])
     </head>
     <body @php(body_class())> 
         @php(wp_body_open()) 
+        @include('partials.body-common')
         @include('sections.header') 
         <main class="section-main">
             @yield('content')

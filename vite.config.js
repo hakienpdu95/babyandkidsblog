@@ -6,7 +6,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import path from 'path';
 
 export default defineConfig({
-  base: '/wp-content/themes/anpro/public/build/',
+  base: '/wp-content/themes/babyandkidsblog/public/build/',
   resolve: {
       alias: {
           '@': path.resolve(__dirname, 'resources'),
@@ -16,7 +16,7 @@ export default defineConfig({
     tailwindcss(),
     laravel({
       input: [
-        'resources/css/hgi-stroke-rounded.css',
+        'resources/css/icon.min.css',
         'resources/css/app.css',      // Tailwind core
         'resources/css/main.scss',    // Custom SCSS của bạn → main.{hash}.css
         'resources/js/jquery.js',
