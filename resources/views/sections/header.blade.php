@@ -4,7 +4,7 @@
 			<div class="wraper mx-auto">
 				<div class="bg-transparent flex justify-between items-center">
 					<div class="flex justify-start items-center overflow-hidden header-logo">
-						<a title="Logo" href="{{ home_url('/') }}">
+						<a title="Logo" href="{{ home_url('/') }}" class="logo-link">
 						    <img id="logo-img" alt="Logo" src="{{ asset('images/logo.png') }}" loading="lazy" class="img-fluid">
 						</a>
 						<div class="flex flex-col" style="margin-top:-3px">
@@ -15,7 +15,7 @@
 						            <span class="br-3 absolute">.com</span>
 						        </strong>
 						    </a>
-						    <div href="{{ home_url('/') }}" class="logo slg-actd absolute" style="bottom: 8px">
+						    <div href="{{ home_url('/') }}" class="logo slg-actd absolute" style="bottom: 5px">
 						        <span class="slogan-actd">The best kids activities...</span>
 						    </div>
 						</div>					
@@ -29,7 +29,7 @@
 						@endif
 						<div class="search-bar-wrapper relative inline-flex items-center h-full px-2" x-data="{ open: false }">
 						    <!-- Search Icon Link -->
-						    <a href="#!" @click.prevent="open = true" class="bg-[#06B5A5] rounded-full p-[12px]">
+						    <a href="#!" @click.prevent="open = true" class="bg-[#64B183] rounded-full p-[12px]">
 						        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="text-white lucide lucide-search w-5 h-5 stroke-2 transition-colors duration-300">
 						            <circle cx="11" cy="11" r="8"></circle>
 						            <path d="m21 21-4.3-4.3"></path>

@@ -113,7 +113,7 @@
 .nav-menu .menu-item a {
     display: inline-block;
     padding: 15px 13px 15px;
-    color: #114b7c;
+    color: #000;
     font-weight: 700;
     font-size: 0.875rem;
     letter-spacing: .1em;
@@ -124,7 +124,7 @@
 }
 
 .nav-menu .menu-item a:hover {
-    color: #000;
+    color: var(--text-primary);
 }
 
 /* ================= ARROW MENU CHA (CẤP 1) ================= */

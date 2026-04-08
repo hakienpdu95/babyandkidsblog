@@ -439,13 +439,13 @@ if (!function_exists('sage_social_icons')) {
             $menu = wp_get_nav_menu_object($menu_id);
             $title = $menu ? $menu->name : $fallback_title;
 
-            $output = '<div class="'.sage_convert_to_kebab($location).' col-span-4">';
+            $output = '<div class="'.sage_convert_to_kebab($location).' col-span-4 text-center">';
 
             // Tiêu đề cột
             if ($title) {
-                $output .= '<a href="#" class="block text-white font-semibold hover:text-emerald-400 mb-4">' 
+                $output .= '<h3 class="block mb-4 heading">' 
                          . esc_html($title) 
-                         . '</a>';
+                         . '</h3>';
             }
 
             // Render menu

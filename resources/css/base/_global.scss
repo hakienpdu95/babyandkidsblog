@@ -354,5 +354,15 @@ body {
         line-height: 1.35;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &:hover {
+            a {
+                color: var(--text-primary);
+            }
+        }
+
+        a {
+            color: #000;
+        }
     }
 }
