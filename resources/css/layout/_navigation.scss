@@ -48,22 +48,22 @@
 			  justify-content: center;
 
 			  &:not(.submenu-opened)::before {
-				  font-family: "hgi-stroke-rounded";
+				  font-family: "Font Awesome 6 Pro";
 				  font-size: 16px;
 				  line-height: 22px;
 				  color: #919eab;
-				  content: "㭚";
+				  content: "\f105";
 				  transform: rotate(0deg);
 				  transition: transform 0.3s ease-in-out;
 				}
 
 				&.submenu-opened::after {
-				  font-family: "hgi-stroke-rounded";
+				  font-family: "Font Awesome 6 Pro";
 				  font-size: 16px;
 				  line-height: 22px;
 				  color: #919eab;
-				  content: "㭚";
-				  transform: rotate(-180deg);
+				  content: "\f105";
+				  transform: rotate(90deg);
 				  transition: transform 0.3s ease-in-out;
 				}
 			}

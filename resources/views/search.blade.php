@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
+<section class="wraper mt-5">
     @php
         global $wp_query;    
         nocache_headers();            
@@ -10,14 +10,14 @@
         $total   = $wp_query->found_posts ?? 0;
     @endphp    
     <header class="entry-header">
-      <h1 class="entry-title" itemprop="headline">Kết quả tìm kiếm cho: {{ esc_html($keyword) }}</h1>
+      <h1 class="entry-title" itemprop="headline">Search results for: {{ esc_html($keyword) }}</h1>
     </header>
 
     <div class="entry-content">
         @include('partials.search-form')
         @if (have_posts())
         <div id="search-content">
-            <div class="search-stats">Có {{ number_format($total) }} kết quả. ({{ $time }} seconds)</div>
+            <div class="search-stats">There are {{ number_format($total) }} results. ({{ $time }} seconds)</div>
             @while (have_posts())
                 @php the_post(); @endphp
                 <div class="pst-srch">
@@ -54,10 +54,10 @@
             <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                 <span class="text-5xl">🔍</span>
             </div>
-            <p class="text-2xl font-semibold text-gray-700 mb-3">Không tìm thấy kết quả nào</p>
+            <p class="text-2xl font-semibold text-gray-700 mb-3">No results found</p>
             <p class="text-gray-500 max-w-md mx-auto">
-                Không có bài viết nào khớp với từ khóa "<strong>{{ esc_html($keyword) }}</strong>". 
-                Hãy thử từ khóa khác hoặc xem các bài viết nổi bật bên dưới.
+                No articles match the keyword "<strong>{{ esc_html($keyword) }}</strong>". 
+                Please try a different keyword or check out the featured articles below.
             </p>
         </div>
         @endif

@@ -23,8 +23,10 @@
 }
 
 .footer-rows-col-2 {
-    border-left: 1px solid #06B5A5;
-    border-right: 1px solid #06B5A5;
+	@include mq(md) {
+    	border-left: 1px solid #06B5A5;
+    	border-right: 1px solid #06B5A5;
+	}
 }
 
 .footer-column-1 {
