@@ -91,7 +91,7 @@
 					    <!-- Search Modal -->
 					    <div x-show="open" class="absolute top-full right-0 w-full z-30" x-transition="" style="display: none;">
 					        <div class="bg-white rounded-xs p-3 w-[400px] relative" style="left: calc(100% - 400px); box-shadow: 0px 30px 50px -10px rgba(0, 0, 0, 0.15);">
-					            <h2 class="text-lg text-black dark:text-white font-bold mb-4">Tìm kiếm</h2>
+					            <h2 class="text-lg text-black dark:text-white font-bold mb-4">Search</h2>
 					            @include('partials.search-form')
 					            <div class="flex justify-end mt-2">
 					                <button @click="open = false" class=" bg-black text-white px-4 py-2 absolute top-0 rtl:left-0 ltr:right-0">x</button>
