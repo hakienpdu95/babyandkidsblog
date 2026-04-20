@@ -44,31 +44,27 @@ class PlaceholderHandler
 
         $post_type = get_post_type($post_id) ?: 'post';
 
-        // 1. Ưu tiên Media Library
+        // 1. Ưu tiên Media Library (nếu bạn set)
         if (!empty(self::$config['media_id'])) {
             $url = wp_get_attachment_url(self::$config['media_id']);
-            if ($url) return self::$urlCache[$post_id] = $url;
+            if ($url) {
+                return self::$urlCache[$post_id] = $url;
+            }
         }
 
-        // 2. Xác định file
+        // 2. Xác định file placeholder
         if (self::$config['random_mode'] && !empty(self::$config['random_files'])) {
             $file = self::$config['random_files'][array_rand(self::$config['random_files'])];
         } else {
             $file = self::$postTypeMap[$post_type] ?? self::$config['default_file'];
         }
 
-        // 3. Cache Vite::asset (quan trọng nhất trong dev mode)
-        if (app()->environment(['local', 'development']) || (defined('WP_DEBUG') && WP_DEBUG)) {
-            $viteKey = "vite_{$file}";
-            if (!isset(self::$viteCache[$viteKey])) {
-                self::$viteCache[$viteKey] = Vite::asset("resources/images/{$file}");
-            }
-            $url = self::$viteCache[$viteKey];
-        } else {
-            $url = get_theme_file_uri("public/images/{$file}");
+        $viteKey = "vite_{$file}";
+        if (!isset(self::$viteCache[$viteKey])) {
+            self::$viteCache[$viteKey] = Vite::asset("resources/images/{$file}");
         }
 
-        return self::$urlCache[$post_id] = $url;
+        return self::$urlCache[$post_id] = self::$viteCache[$viteKey];
     }
 
     public static function replaceWithPlaceholder(string $html, int $post_id, $thumb_id, $size, $attr): string
